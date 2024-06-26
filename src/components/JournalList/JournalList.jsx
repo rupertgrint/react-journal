@@ -2,6 +2,8 @@ import React from 'react';
 import { useState } from 'react';
 import styles from './JournalList.module.css';
 import JournalItem from '../JournalItem/JournalItem';
+import JournalCreatePage from '../../pages/JournalCreateForm/JournalCreateForm';
+import JournalDetailPage from '../../pages/JournalDetailPage/JournalDetailPage';
 
 export default function JournalList() {
   const [journals, setJournals] = useState([
@@ -18,6 +20,10 @@ export default function JournalList() {
       text: '오늘은 쉬었다.',
     },
   ]);
+  const handleAdd = (journal) => {
+    setJournals([...journals, journal]);
+  };
+
   return (
     <section className={styles.container}>
       <ul className={styles.list}>
@@ -25,6 +31,8 @@ export default function JournalList() {
           <JournalItem key={item.id} journal={item} />
         ))}
       </ul>
+      <JournalCreatePage onAdd={handleAdd} />
+      <JournalDetailPage />
     </section>
   );
 }
