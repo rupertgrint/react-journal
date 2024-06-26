@@ -1,0 +1,26 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--color-bg-dark);
+  border-bottom: 1px solid var(--color-grey);
+}
+
+.date {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.today {
+  font-size: 1.2rem;
+}
+
+.button {
+  font-size: 1.2rem;
+  cursor: pointer;
+  background-color: transparent;
+  color: var(--color-text);
+  transition: all 150ms ease-out;
+  border: none;
+}
