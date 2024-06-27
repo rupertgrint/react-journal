@@ -6,7 +6,7 @@ export default function JournalItem({ journal, onSelect }) {
     <li className={styles.journal} key={journal.id} onClick={onSelect}>
       <p className={styles.date}>{journal.date}</p>
       <h3 className={styles.title}>{journal.title}</h3>
-      <p className={styles.text}>{journal.text}</p>
+      <p className={styles.text}>{journal.content}</p>
     </li>
   );
 }

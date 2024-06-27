@@ -1,18 +1,19 @@
-import React, { useContext } from 'react';
-import { useState } from 'react';
+import React from 'react';
 import styles from './JournalList.module.css';
 import JournalItem from '../JournalItem/JournalItem';
-import JournalCreatePage from '../../pages/JournalCreateForm/JournalCreateForm';
 import { useNavigate } from 'react-router-dom';
 import { useJournals } from '../../context/JournalsContext';
 
 export default function JournalList() {
-  const { journals, handleAdd } = useJournals();
+  const { journals } = useJournals();
 
   const navigate = useNavigate();
 
   const handleSelect = (id) => {
     navigate(`/${id}`);
+  };
+  const handleAdd = () => {
+    navigate('/newJournal');
   };
 
   return (
@@ -26,8 +27,7 @@ export default function JournalList() {
           />
         ))}
       </ul>
-      <JournalCreatePage onAdd={handleAdd} />
-      <button>add</button>
+      <button onClick={handleAdd}>add</button>
     </section>
   );
 }

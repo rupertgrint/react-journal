@@ -13,6 +13,7 @@ const router = createBrowserRouter([
     errorElement: <NotFound />,
   },
   { path: '/:journalId', element: <JournalDetailPage /> },
+  { path: '/newJournal', element: <JournalCreateForm /> },
 ]);
 
 function App() {

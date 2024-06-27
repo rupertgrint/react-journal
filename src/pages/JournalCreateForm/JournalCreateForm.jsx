@@ -2,22 +2,30 @@ import React from 'react';
 import styles from './JournalCreateForm.module.css';
 import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import { useNavigate } from 'react-router-dom';
+import { useJournals } from '../../context/JournalsContext';
 
-export default function JournalCreatePage({ onAdd }) {
+export default function JournalCreatePage() {
+  const { handleAdd } = useJournals();
+  const navigate = useNavigate();
+
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [date, setDate] = useState('');
+
   const handleTitleChange = (e) => setTitle(e.target.value);
   const handleContentChange = (e) => setContent(e.target.value);
   const handleDateChange = (e) => setDate(e.target.value);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (title.trim().length === 0 || content.trim().length === 0) {
       return;
     }
-    onAdd({ id: uuidv4(), date, title, content });
+    handleAdd({ id: uuidv4(), date, title, content });
     setTitle('');
     setContent('');
+    navigate('/');
   };
 
   return (
