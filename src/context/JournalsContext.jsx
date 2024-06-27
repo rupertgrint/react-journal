@@ -14,8 +14,19 @@ export function JournalsProvider({ children }) {
   const handleAdd = (journal) => {
     setJournals([...journals, journal]);
   };
+  const handleDelete = (deleted) => {
+    setJournals((journals) => journals.filter((j) => j.id !== deleted));
+  };
+  const handleEdit = (editedJournal) => {
+    setJournals((prevJournals) =>
+      prevJournals.map((j) => (j.id === editedJournal.id ? editedJournal : j))
+    );
+  };
+
   return (
-    <JournalsContext.Provider value={{ journals, handleAdd }}>
+    <JournalsContext.Provider
+      value={{ journals, handleAdd, handleDelete, handleEdit }}
+    >
       {children}
     </JournalsContext.Provider>
   );
