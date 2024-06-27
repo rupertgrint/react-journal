@@ -1,13 +1,11 @@
 import React from 'react';
 import styles from './JournalItem.module.css';
 
-export default function JournalItem({ journal }) {
+export default function JournalItem({ journal, onSelect }) {
   return (
-    <li className={styles.journal}>
+    <li className={styles.journal} key={journal.id} onClick={onSelect}>
       <p className={styles.date}>{journal.date}</p>
-      <p className={styles.title} key={journal.id}>
-        {journal.title}
-      </p>
+      <h3 className={styles.title}>{journal.title}</h3>
       <p className={styles.text}>{journal.text}</p>
     </li>
   );

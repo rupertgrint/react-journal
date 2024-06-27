@@ -15,7 +15,7 @@ export default function JournalCreatePage({ onAdd }) {
     if (title.trim().length === 0 || content.trim().length === 0) {
       return;
     }
-    onAdd({ id: uuidv4(), date, title, text: content });
+    onAdd({ id: uuidv4(), date, title, content });
     setTitle('');
     setContent('');
   };
