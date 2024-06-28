@@ -4,8 +4,11 @@ import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { useNavigate } from 'react-router-dom';
 import { useJournals } from '../../context/JournalsContext';
+import { useDarkMode } from '../../context/DarkModeContext';
 
 export default function JournalCreatePage() {
+  const { darkMode } = useDarkMode();
+
   const { handleAdd } = useJournals();
   const navigate = useNavigate();
 

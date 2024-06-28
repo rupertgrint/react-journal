@@ -2,8 +2,11 @@ import React from 'react';
 import styles from './Header.module.css';
 import { useState } from 'react';
 import { HiMoon, HiSun } from 'react-icons/hi';
+import { useDarkMode } from '../../context/DarkModeContext';
 
 export default function Header() {
+  const { darkMode, toggleDarkMode } = useDarkMode();
+
   const date = new Date();
   const today = date.toLocaleDateString();
   const currentYear = date.getFullYear();
@@ -55,8 +58,9 @@ export default function Header() {
         </select>
       </div>
       <p className={styles.today}>{today}</p>
-      <button className={styles.button}>
-        <HiSun />
+      <button className={styles.button} onClick={toggleDarkMode}>
+        {!darkMode && <HiMoon />}
+        {darkMode && <HiSun />}
       </button>
     </header>
   );

@@ -1,0 +1,16 @@
+.header {
+  background-color: var(--color-bg-dark);
+  color: var(--color-text);
+}
+.container {
+  background-color: var(--color-bg-dark);
+  color: var(--color-text);
+}
+.footer {
+  background-color: var(--color-bg-dark);
+  color: var(--color-text);
+}
+.button {
+  background-color: var(--color-accent);
+  color: var(--color-white);
+}

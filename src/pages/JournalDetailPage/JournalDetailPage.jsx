@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useJournals } from '../../context/JournalsContext';
+import styles from './JournalDetailPage.module.css';
 
 export default function JournalDetailPage() {
   const navigate = useNavigate();
@@ -24,17 +25,21 @@ export default function JournalDetailPage() {
   }
   return (
     <>
-      <header>
+      <header className={styles.header}>
         <button onClick={() => navigate(-1)}>back</button>
       </header>
-      <section>
+      <section className={styles.container}>
         <label>{journal.date}</label>
         <label>{journal.title}</label>
         <p>{journal.content}</p>
       </section>
-      <section>
-        <button onClick={handleDelete}>delete</button>
-        <button onClick={handleEdit}>edit</button>
+      <section className={styles.footer}>
+        <button className={styles.delBtn} onClick={handleDelete}>
+          delete
+        </button>
+        <button className={styles.editBtn} onClick={handleEdit}>
+          edit
+        </button>
       </section>
     </>
   );

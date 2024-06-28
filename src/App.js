@@ -7,6 +7,7 @@ import JournalDetailPage from './pages/JournalDetailPage/JournalDetailPage';
 import { JournalsProvider } from './context/JournalsContext';
 import DeletePage from './pages/DeletePage/DeletePage';
 import EditPage from './pages/EditPage/EditPage';
+import { DarkModeProvider } from './context/DarkModeContext';
 
 const router = createBrowserRouter([
   {
@@ -22,9 +23,11 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-    <JournalsProvider>
-      <RouterProvider router={router} />;
-    </JournalsProvider>
+    <DarkModeProvider>
+      <JournalsProvider>
+        <RouterProvider router={router} />;
+      </JournalsProvider>
+    </DarkModeProvider>
   );
 }
 
