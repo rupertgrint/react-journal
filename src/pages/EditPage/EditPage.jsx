@@ -3,6 +3,7 @@ import styles from './EditPage.module.css';
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useJournals } from '../../context/JournalsContext';
+import { IoReturnUpBack } from 'react-icons/io5';
 
 export default function EditPage() {
   const { journals, handleEdit } = useJournals();
@@ -33,29 +34,36 @@ export default function EditPage() {
   return (
     <>
       <header className={styles.header}>
-        <button className={styles.backBtn}>back</button>
+        <button onClick={() => navigate(-1)} className={styles.backBtn}>
+          <IoReturnUpBack />
+        </button>
         <form>
-          <input type="date" value={date} onChange={handleDateChange}></input>
+          <input
+            className={styles.dateForm}
+            type="date"
+            value={date}
+            onChange={handleDateChange}
+          ></input>
         </form>
       </header>
-      <section>
-        <label>Title</label>
-        <form className={styles.titleForm} onSubmit={handleSubmit}>
+      <section className={styles.container}>
+        <label className={styles.label}>Title</label>
+        <form onSubmit={handleSubmit}>
           <input
+            className={styles.titleForm}
             type="text"
             value={title}
             onChange={handleTitleChange}
-            maxlength="20"
+            maxLength="20"
           ></input>
-        </form>
-        <label>Content</label>
-        <form className={styles.contentForm} onSubmit={handleSubmit}>
-          <input
+          <label className={styles.label}>Content</label>
+          <textarea
+            className={styles.contentForm}
             type="text"
             value={content}
             onChange={handleContentChange}
-            maxlength="200"
-          ></input>
+            maxLength="200"
+          ></textarea>
         </form>
       </section>
       <section>

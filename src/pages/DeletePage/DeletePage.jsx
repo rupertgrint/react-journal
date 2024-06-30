@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useJournals } from '../../context/JournalsContext';
+import styles from './DeletePage.module.css';
 
 export default function DeletePage() {
   const navigate = useNavigate();
@@ -16,12 +17,16 @@ export default function DeletePage() {
 
   return (
     <>
-      <section>
-        <p>Are you sure to delete the journal?</p>
-      </section>
-      <section>
-        <button onClick={handleNo}>NO</button>
-        <button onClick={handleYes}>YES</button>
+      <section className={styles.container}>
+        <p className={styles.text}>Are you sure to delete the journal?</p>
+        <section>
+          <button className={styles.noBtn} onClick={handleNo}>
+            NO
+          </button>
+          <button className={styles.yesBtn} onClick={handleYes}>
+            YES
+          </button>
+        </section>
       </section>
     </>
   );

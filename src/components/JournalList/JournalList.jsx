@@ -3,8 +3,9 @@ import styles from './JournalList.module.css';
 import JournalItem from '../JournalItem/JournalItem';
 import { useNavigate } from 'react-router-dom';
 import { useJournals } from '../../context/JournalsContext';
+import { LuPencilLine } from 'react-icons/lu';
 
-export default function JournalList() {
+export default function JournalList({ selectedYear, selectedMonth }) {
   const { journals } = useJournals();
 
   const navigate = useNavigate();
@@ -16,10 +17,18 @@ export default function JournalList() {
     navigate('/newJournal');
   };
 
+  const filteredJournals = journals.filter((j) => {
+    const journalDate = new Date(j.date);
+    return (
+      journalDate.getFullYear() === selectedYear &&
+      journalDate.getMonth() + 1 === selectedMonth
+    );
+  });
+
   return (
     <section className={styles.container}>
       <ul className={styles.list}>
-        {journals.map((item) => (
+        {filteredJournals.map((item) => (
           <JournalItem
             key={item.id}
             journal={item}
@@ -27,7 +36,9 @@ export default function JournalList() {
           />
         ))}
       </ul>
-      <button onClick={handleAdd}>add</button>
+      <button className={styles.button} onClick={handleAdd}>
+        <LuPencilLine />
+      </button>
     </section>
   );
 }

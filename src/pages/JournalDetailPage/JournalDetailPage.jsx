@@ -2,6 +2,9 @@ import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useJournals } from '../../context/JournalsContext';
 import styles from './JournalDetailPage.module.css';
+import { IoReturnUpBack } from 'react-icons/io5';
+import { AiOutlineDelete } from 'react-icons/ai';
+import { FiEdit } from 'react-icons/fi';
 
 export default function JournalDetailPage() {
   const navigate = useNavigate();
@@ -26,19 +29,21 @@ export default function JournalDetailPage() {
   return (
     <>
       <header className={styles.header}>
-        <button onClick={() => navigate(-1)}>back</button>
+        <button className={styles.backBtn} onClick={() => navigate(-1)}>
+          <IoReturnUpBack />
+        </button>
+        <label className={styles.date}>{journal.date}</label>
       </header>
       <section className={styles.container}>
-        <label>{journal.date}</label>
-        <label>{journal.title}</label>
-        <p>{journal.content}</p>
+        <label className={styles.title}>{journal.title}</label>
+        <p className={styles.content}>{journal.content}</p>
       </section>
       <section className={styles.footer}>
-        <button className={styles.delBtn} onClick={handleDelete}>
-          delete
-        </button>
         <button className={styles.editBtn} onClick={handleEdit}>
-          edit
+          <FiEdit />
+        </button>
+        <button className={styles.delBtn} onClick={handleDelete}>
+          <AiOutlineDelete />
         </button>
       </section>
     </>

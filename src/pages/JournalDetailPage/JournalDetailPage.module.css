@@ -1,16 +1,93 @@
 .header {
   background-color: var(--color-bg-dark);
   color: var(--color-text);
+  padding-top: 55px;
+  padding-left: 40px;
+  padding-bottom: 30px;
+  margin-right: 110px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
+
+.backBtn {
+  font-size: 1rem;
+  margin-right: auto;
+}
+
+.date {
+  font-size: 0.9rem;
+  margin: 0 auto;
+}
+
 .container {
   background-color: var(--color-bg-dark);
   color: var(--color-text);
+  padding-top: 10px;
+  padding-left: 50px;
+  margin-right: 50px;
+  overflow-y: auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
 }
+
+.title {
+  font-weight: bold;
+  font-size: 0.9rem;
+  padding-top: 30px;
+}
+
+.content {
+  font-size: 0.9rem;
+  padding-top: 10px;
+}
+
 .footer {
   background-color: var(--color-bg-dark);
   color: var(--color-text);
+  padding-left: 290px;
+  margin-top: 30px;
+  position: absolute;
+  bottom: 14%;
 }
-.button {
-  background-color: var(--color-accent);
-  color: var(--color-white);
+
+button {
+  width: 20px;
+  height: 20px;
+  background-color: transparent;
+  color: var(--color-text);
+  border: none;
+}
+
+.editBtn:hover,
+.delBtn:hover {
+  transition: all 150ms ease-in;
+  transform: scale(1.2);
+}
+
+.editBtn {
+  font-size: 20px;
+  padding-bottom: 30px;
+}
+
+.delBtn {
+  font-size: 22px;
+  padding-left: 20px;
+}
+
+::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+::-webkit-scrollbar-track {
+  background-color: var(--color-bg-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-scrollbar);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-scrollbar-accent);
 }

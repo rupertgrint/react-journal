@@ -1,0 +1,44 @@
+.container {
+  background-color: var(--color-bg-dark);
+  width: 350px;
+  height: 250px;
+  border: 1px solid var(--color-grey);
+  border-radius: 0.8rem;
+  margin: 150px auto 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.text {
+  color: var(--color-text);
+  font-size: 1rem;
+  font-weight: bold;
+  padding-top: 60px;
+  padding-bottom: 70px;
+}
+
+.noBtn {
+  color: var(--color-text);
+  opacity: 0.7;
+  background-color: var(--color-bg-dark);
+  width: 70px;
+  height: 30px;
+  border: solid 1px var(--color-grey);
+  font-size: 0.8rem;
+}
+
+.yesBtn {
+  color: var(--color-text);
+  background-color: var(--color-accent);
+  width: 70px;
+  height: 30px;
+  border: solid 1px var(--color-grey);
+  font-size: 0.8rem;
+}
+
+.noBtn:hover,
+.yesBtn:hover {
+  transform: scale(1.1);
+}

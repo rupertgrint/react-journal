@@ -25,7 +25,7 @@ function App() {
   return (
     <DarkModeProvider>
       <JournalsProvider>
-        <RouterProvider router={router} />;
+        <RouterProvider router={router} />
       </JournalsProvider>
     </DarkModeProvider>
   );

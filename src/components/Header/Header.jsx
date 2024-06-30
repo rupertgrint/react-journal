@@ -4,7 +4,12 @@ import { useState } from 'react';
 import { HiMoon, HiSun } from 'react-icons/hi';
 import { useDarkMode } from '../../context/DarkModeContext';
 
-export default function Header() {
+export default function Header({
+  selectedYear,
+  setSelectedYear,
+  selectedMonth,
+  setSelectedMonth,
+}) {
   const { darkMode, toggleDarkMode } = useDarkMode();
 
   const date = new Date();
@@ -18,18 +23,15 @@ export default function Header() {
     years.push(year);
   }
 
-  const [chosenYear, setChosenYear] = useState(currentYear);
-  const [chosenMonth, setChosenMonth] = useState(currentMonth);
-
-  const handleMonthChange = (e) => setChosenMonth(e.target.valule);
-  const handleYearChange = (e) => setChosenYear(e.target.value);
+  const handleMonthChange = (e) => setSelectedMonth(Number(e.target.value));
+  const handleYearChange = (e) => setSelectedYear(Number(e.target.value));
 
   return (
     <header className={styles.header}>
       <div className={styles.date}>
         <select
           className={styles.month}
-          value={chosenMonth}
+          value={selectedMonth}
           onChange={handleMonthChange}
         >
           <option value="1">1</option>
@@ -47,7 +49,7 @@ export default function Header() {
         </select>
         <select
           className={styles.year}
-          value={chosenYear}
+          value={selectedYear}
           onChange={handleYearChange}
         >
           {years.map((year) => (
