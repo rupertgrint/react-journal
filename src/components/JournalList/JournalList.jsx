@@ -17,16 +17,15 @@ export default function JournalList({ selectedYear, selectedMonth }) {
     navigate('/newJournal');
   };
 
-  const filteredJournals = journals.filter((j) => {
-    const journalDate = new Date(j.date);
-    return (
-      journalDate.getFullYear() === selectedYear &&
-      journalDate.getMonth() + 1 === selectedMonth
-    );
-  });
-  const sortedJournals = filteredJournals.toSorted((a, b) =>
-    a.date.localeCompare(b.date)
-  );
+  const sortedJournals = journals
+    .filter((j) => {
+      const journalDate = new Date(j.date);
+      return (
+        journalDate.getFullYear() === selectedYear &&
+        journalDate.getMonth() + 1 === selectedMonth
+      );
+    })
+    .sort((a, b) => a.date.localeCompare(b.date));
 
   return (
     <section className={styles.container}>
