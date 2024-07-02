@@ -24,11 +24,14 @@ export default function JournalList({ selectedYear, selectedMonth }) {
       journalDate.getMonth() + 1 === selectedMonth
     );
   });
+  const sortedJournals = filteredJournals.sort(
+    (a, b) => new Date(a.date) - new Date(b.date)
+  );
 
   return (
     <section className={styles.container}>
       <ul className={styles.list}>
-        {filteredJournals.map((item) => (
+        {sortedJournals.map((item) => (
           <JournalItem
             key={item.id}
             journal={item}
