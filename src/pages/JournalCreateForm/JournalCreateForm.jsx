@@ -13,23 +13,32 @@ export default function JournalCreatePage() {
   const { handleAdd } = useJournals();
   const navigate = useNavigate();
 
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
-  const [date, setDate] = useState('');
+  const [newJournal, setNewJournal] = useState({
+    title: '',
+    content: '',
+    date: '',
+  });
 
-  const handleTitleChange = (e) => setTitle(e.target.value);
-  const handleContentChange = (e) => setContent(e.target.value);
-  const handleDateChange = (e) => setDate(e.target.value);
+  const handleInputChange = (e) => {
+    setNewJournal((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (title.trim().length === 0 || content.trim().length === 0) {
+    if (
+      newJournal.date.trim().length === 0 ||
+      newJournal.title.trim().length === 0 ||
+      newJournal.content.trim().length === 0
+    ) {
       return;
     }
-    handleAdd({ id: uuidv4(), date, title, content });
-    setTitle('');
-    setContent('');
+    handleAdd({ id: uuidv4(), ...newJournal });
+    setNewJournal({
+      date: '',
+      title: '',
+      content: '',
+    });
     navigate('/');
   };
 
@@ -43,8 +52,9 @@ export default function JournalCreatePage() {
           <input
             className={styles.dateForm}
             type="date"
-            value={date}
-            onChange={handleDateChange}
+            name="date"
+            value={newJournal.date}
+            onChange={handleInputChange}
           ></input>
         </form>
       </header>
@@ -54,16 +64,18 @@ export default function JournalCreatePage() {
           <textarea
             className={styles.titleForm}
             type="text"
-            value={title}
-            onChange={handleTitleChange}
+            name="title"
+            value={newJournal.title}
+            onChange={handleInputChange}
             maxlength="20"
           ></textarea>
           <label className={styles.label}>Content</label>
           <textarea
             className={styles.contentForm}
             type="text"
-            value={content}
-            onChange={handleContentChange}
+            name="content"
+            value={newJournal.content}
+            onChange={handleInputChange}
             maxlength="100"
           ></textarea>
         </form>
