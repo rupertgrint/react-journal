@@ -4,12 +4,9 @@ import { HiMoon, HiSun } from 'react-icons/hi';
 import { useDarkMode } from '../../context/DarkModeContext';
 import { useMemo } from 'react';
 
-export default function Header({
-  selectedYear,
-  setSelectedYear,
-  selectedMonth,
-  setSelectedMonth,
-}) {
+const months = Array.from({ length: 12 }, (_, index) => index + 1);
+
+export default function Header({ selectedDate, updateSelectedDate }) {
   const { darkMode, toggleDarkMode } = useDarkMode();
 
   const date = new Date();
@@ -23,21 +20,19 @@ export default function Header({
       yearsArray.push(year);
     }
     return yearsArray;
-  }, []);
+  }, [currentYear, minYear]);
 
-  const months = useMemo(() => {
-    return Array.from({ length: 12 }, (_, index) => index + 1);
-  }, []);
-
-  const handleMonthChange = (e) => setSelectedMonth(Number(e.target.value));
-  const handleYearChange = (e) => setSelectedYear(Number(e.target.value));
+  const handleMonthChange = (e) =>
+    updateSelectedDate({ month: Number(e.target.value) });
+  const handleYearChange = (e) =>
+    updateSelectedDate({ year: Number(e.target.value) });
 
   return (
     <header className={styles.header}>
       <div className={styles.date}>
         <select
           className={styles.month}
-          value={selectedMonth}
+          value={selectedDate.month}
           onChange={handleMonthChange}
         >
           {months.map((month) => (
@@ -48,7 +43,7 @@ export default function Header({
         </select>
         <select
           className={styles.year}
-          value={selectedYear}
+          value={selectedDate.year}
           onChange={handleYearChange}
         >
           {years.map((year) => (

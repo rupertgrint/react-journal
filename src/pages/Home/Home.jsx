@@ -9,25 +9,17 @@ export default function Home() {
     month: new Date().getMonth() + 1,
   });
 
-  const setYear = (year) => {
-    setSelectedDate((prev) => ({ ...prev, year }));
-  };
-  const setMonth = (month) => {
-    setSelectedDate((prev) => ({ ...prev, month }));
+  const updateSelectedDate = (date) => {
+    setSelectedDate((prev) => ({ ...prev, ...date }));
   };
 
   return (
     <>
       <Header
-        selectedYear={selectedDate.year}
-        setSelectedYear={setYear}
-        selectedMonth={selectedDate.month}
-        setSelectedMonth={setMonth}
+        selectedDate={selectedDate}
+        updateSelectedDate={updateSelectedDate}
       />
-      <JournalList
-        selectedYear={selectedDate.year}
-        selectedMonth={selectedDate.month}
-      />
+      <JournalList selectedDate={selectedDate} />
     </>
   );
 }

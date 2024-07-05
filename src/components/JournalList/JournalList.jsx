@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import styles from './JournalList.module.css';
 import JournalItem from '../JournalItem/JournalItem';
 import { useNavigate } from 'react-router-dom';
 import { useJournals } from '../../context/JournalsContext';
 import { LuPencilLine } from 'react-icons/lu';
 
-export default function JournalList({ selectedYear, selectedMonth }) {
+export default function JournalList({ selectedDate }) {
+  const { year, month } = selectedDate;
   const { journals } = useJournals();
 
   const navigate = useNavigate();
@@ -21,8 +22,8 @@ export default function JournalList({ selectedYear, selectedMonth }) {
     .filter((j) => {
       const journalDate = new Date(j.date);
       return (
-        journalDate.getFullYear() === selectedYear &&
-        journalDate.getMonth() + 1 === selectedMonth
+        journalDate.getFullYear() === year &&
+        journalDate.getMonth() + 1 === month
       );
     })
     .sort((a, b) => a.date.localeCompare(b.date));

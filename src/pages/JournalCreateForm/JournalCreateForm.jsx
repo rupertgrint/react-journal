@@ -13,11 +13,9 @@ export default function JournalCreatePage() {
   const { handleAdd } = useJournals();
   const navigate = useNavigate();
 
-  const [newJournal, setNewJournal] = useState({
-    title: '',
-    content: '',
-    date: '',
-  });
+  const initialState = { title: '', content: '', date: '' };
+
+  const [newJournal, setNewJournal] = useState(initialState);
 
   const handleInputChange = (e) => {
     setNewJournal((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -34,11 +32,7 @@ export default function JournalCreatePage() {
       return;
     }
     handleAdd({ id: uuidv4(), ...newJournal });
-    setNewJournal({
-      date: '',
-      title: '',
-      content: '',
-    });
+    setNewJournal(initialState);
     navigate('/');
   };
 
