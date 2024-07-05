@@ -5,27 +5,19 @@ import { useDarkMode } from '../../context/DarkModeContext';
 import { useMemo } from 'react';
 
 const months = Array.from({ length: 12 }, (_, index) => index + 1);
+const MIN_YEAR = 1990;
 
-export default function Header({ selectedDate, updateSelectedDate }) {
+export default function Header({ selectedDate, onDateChange }) {
   const { darkMode, toggleDarkMode } = useDarkMode();
 
   const date = new Date();
   const today = date.toLocaleDateString();
   const currentYear = date.getFullYear();
-  const minYear = 1990;
 
-  const years = useMemo(() => {
-    const yearsArray = [];
-    for (let year = currentYear; year >= minYear; year--) {
-      yearsArray.push(year);
-    }
-    return yearsArray;
-  }, [currentYear, minYear]);
-
-  const handleMonthChange = (e) =>
-    updateSelectedDate({ month: Number(e.target.value) });
-  const handleYearChange = (e) =>
-    updateSelectedDate({ year: Number(e.target.value) });
+  const years = Array.from(
+    { length: currentYear - MIN_YEAR + 1 },
+    (_, idx) => idx + MIN_YEAR
+  );
 
   return (
     <header className={styles.header}>
