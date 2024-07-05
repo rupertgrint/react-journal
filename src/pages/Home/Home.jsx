@@ -9,16 +9,14 @@ export default function Home() {
     month: new Date().getMonth() + 1,
   });
 
-  const updateSelectedDate = (date) => {
-    setSelectedDate((prev) => ({ ...prev, ...date }));
+  const updateSelectedDate = (e) => {
+    const { name, value } = e.target;
+    setSelectedDate((prev) => ({ ...prev, [name]: value }));
   };
 
   return (
     <>
-      <Header
-        selectedDate={selectedDate}
-        updateSelectedDate={updateSelectedDate}
-      />
+      <Header selectedDate={selectedDate} onDateChange={updateSelectedDate} />
       <JournalList selectedDate={selectedDate} />
     </>
   );

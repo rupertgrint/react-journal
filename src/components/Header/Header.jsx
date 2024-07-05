@@ -33,7 +33,8 @@ export default function Header({ selectedDate, updateSelectedDate }) {
         <select
           className={styles.month}
           value={selectedDate.month}
-          onChange={handleMonthChange}
+          onChange={onDateChange}
+          name='month'
         >
           {months.map((month) => (
             <option key={month} value={month}>
@@ -44,7 +45,8 @@ export default function Header({ selectedDate, updateSelectedDate }) {
         <select
           className={styles.year}
           value={selectedDate.year}
-          onChange={handleYearChange}
+          onChange={onDateChange}
+          name='year'
         >
           {years.map((year) => (
             <option key={year} value={year}>
