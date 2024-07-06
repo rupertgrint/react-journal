@@ -4,14 +4,15 @@ import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { useNavigate } from 'react-router-dom';
 import { useJournals } from '../../context/JournalsContext';
-import { useDarkMode } from '../../context/DarkModeContext';
 import { IoReturnUpBack } from 'react-icons/io5';
 
-const initialState = { title: '', content: '', date: '' };
+const initialState = {
+  title: '',
+  content: '',
+  date: new Date().toISOString().substr(0, 10),
+};
 
 export default function JournalCreatePage() {
-  const { darkMode } = useDarkMode();
-
   const { handleAdd } = useJournals();
   const navigate = useNavigate();
 
@@ -42,40 +43,38 @@ export default function JournalCreatePage() {
         <button onClick={() => navigate(-1)} className={styles.backBtn}>
           <IoReturnUpBack />
         </button>
-        <form>
-          <input
-            className={styles.dateForm}
-            type='date'
-            name='date'
-            value={newJournal.date}
-            onChange={handleInputChange}
-          ></input>
-        </form>
+        <input
+          className={styles.dateForm}
+          type="date"
+          name="date"
+          value={newJournal.date}
+          onChange={handleInputChange}
+        ></input>
       </header>
       <section className={styles.container}>
         <label className={styles.label}>Title</label>
         <form onSubmit={handleSubmit}>
-          <textarea
+          <input
             className={styles.titleForm}
-            type='text'
-            name='title'
+            type="text"
+            name="title"
             value={newJournal.title}
             onChange={handleInputChange}
-            maxlength='20'
-          ></textarea>
+            maxlength="20"
+          ></input>
           <label className={styles.label}>Content</label>
           <textarea
             className={styles.contentForm}
-            type='text'
-            name='content'
+            type="text"
+            name="content"
             value={newJournal.content}
             onChange={handleInputChange}
-            maxlength='100'
+            maxLength="200"
           ></textarea>
         </form>
       </section>
       <section>
-        <button className={styles.saveBtn} type='submit' onClick={handleSubmit}>
+        <button className={styles.saveBtn} type="submit" onClick={handleSubmit}>
           save
         </button>
       </section>
