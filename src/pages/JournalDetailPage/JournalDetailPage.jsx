@@ -35,9 +35,9 @@ export default function JournalDetailPage() {
     e.preventDefault();
 
     const isReadyToSubmit =
-      date.trim().length === 0 &&
-      title.trim().length === 0 &&
-      content.trim().length === 0;
+      date.trim().length !== 0 &&
+      title.trim().length !== 0 &&
+      content.trim().length !== 0;
 
     if (!isReadyToSubmit) return;
 
@@ -62,7 +62,7 @@ export default function JournalDetailPage() {
         {isEditMode ? (
           <input
             className={styles.dateForm}
-            type="date"
+            type='date'
             value={date}
             onChange={handleDateChange}
           />
@@ -75,17 +75,17 @@ export default function JournalDetailPage() {
           <>
             <input
               className={styles.titleForm}
-              type="text"
+              type='text'
               value={title}
               onChange={handleTitleChange}
-              maxLength="20"
+              maxLength='20'
             />
             <textarea
               className={styles.contentForm}
-              type="text"
+              type='text'
               value={content}
               onChange={handleContentChange}
-              maxLength="200"
+              maxLength='200'
             />
           </>
         ) : (
@@ -97,7 +97,7 @@ export default function JournalDetailPage() {
       </div>
       <section className={styles.footer}>
         {isEditMode ? (
-          <button className={styles.saveBtn} type="submit" onClick={handleSave}>
+          <button className={styles.saveBtn} type='submit' onClick={handleSave}>
             save
           </button>
         ) : (

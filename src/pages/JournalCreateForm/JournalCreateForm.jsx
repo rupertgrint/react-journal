@@ -26,9 +26,9 @@ export default function JournalCreatePage() {
     e.preventDefault();
 
     const isReadyToSubmit =
-      newJournal.date.trim().length === 0 &&
-      newJournal.title.trim().length === 0 &&
-      newJournal.content.trim().length === 0;
+      newJournal.date.trim().length !== 0 &&
+      newJournal.title.trim().length !== 0 &&
+      newJournal.content.trim().length !== 0;
 
     if (!isReadyToSubmit) return;
 
@@ -45,8 +45,8 @@ export default function JournalCreatePage() {
         </button>
         <input
           className={styles.dateForm}
-          type="date"
-          name="date"
+          type='date'
+          name='date'
           value={newJournal.date}
           onChange={handleInputChange}
         ></input>
@@ -56,25 +56,25 @@ export default function JournalCreatePage() {
         <form onSubmit={handleSubmit}>
           <input
             className={styles.titleForm}
-            type="text"
-            name="title"
+            type='text'
+            name='title'
             value={newJournal.title}
             onChange={handleInputChange}
-            maxlength="20"
+            maxlength='20'
           ></input>
           <label className={styles.label}>Content</label>
           <textarea
             className={styles.contentForm}
-            type="text"
-            name="content"
+            type='text'
+            name='content'
             value={newJournal.content}
             onChange={handleInputChange}
-            maxLength="200"
+            maxLength='200'
           ></textarea>
         </form>
       </section>
       <section>
-        <button className={styles.saveBtn} type="submit" onClick={handleSubmit}>
+        <button className={styles.saveBtn} type='submit' onClick={handleSubmit}>
           save
         </button>
       </section>
