@@ -4,18 +4,20 @@ import JournalList from '../../components/JournalList/JournalList';
 import { useState } from 'react';
 
 export default function Home() {
-  const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
-  const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth() + 1);
+  const [selectedDate, setSelectedDate] = useState({
+    year: new Date().getFullYear(),
+    month: new Date().getMonth() + 1,
+  });
+
+  const updateSelectedDate = (e) => {
+    const { name, value } = e.target;
+    setSelectedDate((prev) => ({ ...prev, [name]: value }));
+  };
 
   return (
     <>
-      <Header
-        selectedYear={selectedYear}
-        setSelectedYear={setSelectedYear}
-        selectedMonth={selectedMonth}
-        setSelectedMonth={setSelectedMonth}
-      />
-      <JournalList selectedYear={selectedYear} selectedMonth={selectedMonth} />
+      <Header selectedDate={selectedDate} onDateChange={updateSelectedDate} />
+      <JournalList selectedDate={selectedDate} />
     </>
   );
 }

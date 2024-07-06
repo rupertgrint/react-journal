@@ -7,29 +7,32 @@ import { useJournals } from '../../context/JournalsContext';
 import { useDarkMode } from '../../context/DarkModeContext';
 import { IoReturnUpBack } from 'react-icons/io5';
 
+const initialState = { title: '', content: '', date: '' };
+
 export default function JournalCreatePage() {
   const { darkMode } = useDarkMode();
 
   const { handleAdd } = useJournals();
   const navigate = useNavigate();
 
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
-  const [date, setDate] = useState('');
+  const [newJournal, setNewJournal] = useState(initialState);
 
-  const handleTitleChange = (e) => setTitle(e.target.value);
-  const handleContentChange = (e) => setContent(e.target.value);
-  const handleDateChange = (e) => setDate(e.target.value);
+  const handleInputChange = (e) => {
+    setNewJournal((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (title.trim().length === 0 || content.trim().length === 0) {
-      return;
-    }
-    handleAdd({ id: uuidv4(), date, title, content });
-    setTitle('');
-    setContent('');
+    const isReadyToSubmit =
+      newJournal.date.trim().length === 0 &&
+      newJournal.title.trim().length === 0 &&
+      newJournal.content.trim().length === 0;
+
+    if (!isReadyToSubmit) return;
+
+    handleAdd({ id: uuidv4(), ...newJournal });
+    setNewJournal(initialState);
     navigate('/');
   };
 
@@ -42,9 +45,10 @@ export default function JournalCreatePage() {
         <form>
           <input
             className={styles.dateForm}
-            type="date"
-            value={date}
-            onChange={handleDateChange}
+            type='date'
+            name='date'
+            value={newJournal.date}
+            onChange={handleInputChange}
           ></input>
         </form>
       </header>
@@ -53,23 +57,25 @@ export default function JournalCreatePage() {
         <form onSubmit={handleSubmit}>
           <textarea
             className={styles.titleForm}
-            type="text"
-            value={title}
-            onChange={handleTitleChange}
-            maxlength="20"
+            type='text'
+            name='title'
+            value={newJournal.title}
+            onChange={handleInputChange}
+            maxlength='20'
           ></textarea>
           <label className={styles.label}>Content</label>
           <textarea
             className={styles.contentForm}
-            type="text"
-            value={content}
-            onChange={handleContentChange}
-            maxlength="100"
+            type='text'
+            name='content'
+            value={newJournal.content}
+            onChange={handleInputChange}
+            maxlength='100'
           ></textarea>
         </form>
       </section>
       <section>
-        <button className={styles.saveBtn} type="submit" onClick={handleSubmit}>
+        <button className={styles.saveBtn} type='submit' onClick={handleSubmit}>
           save
         </button>
       </section>

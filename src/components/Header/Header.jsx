@@ -1,56 +1,44 @@
 import React from 'react';
 import styles from './Header.module.css';
-import { useState } from 'react';
 import { HiMoon, HiSun } from 'react-icons/hi';
 import { useDarkMode } from '../../context/DarkModeContext';
+import { useMemo } from 'react';
 
-export default function Header({
-  selectedYear,
-  setSelectedYear,
-  selectedMonth,
-  setSelectedMonth,
-}) {
+const months = Array.from({ length: 12 }, (_, index) => index + 1);
+const MIN_YEAR = 1990;
+
+export default function Header({ selectedDate, onDateChange }) {
   const { darkMode, toggleDarkMode } = useDarkMode();
 
   const date = new Date();
   const today = date.toLocaleDateString();
   const currentYear = date.getFullYear();
-  const currentMonth = date.getMonth() + 1;
-  const minYear = 1990;
 
-  const years = [];
-  for (let year = currentYear; year >= minYear; year--) {
-    years.push(year);
-  }
-
-  const handleMonthChange = (e) => setSelectedMonth(Number(e.target.value));
-  const handleYearChange = (e) => setSelectedYear(Number(e.target.value));
+  const years = Array.from(
+    { length: currentYear - MIN_YEAR + 1 },
+    (_, idx) => idx + MIN_YEAR
+  );
 
   return (
     <header className={styles.header}>
       <div className={styles.date}>
         <select
           className={styles.month}
-          value={selectedMonth}
-          onChange={handleMonthChange}
+          value={selectedDate.month}
+          onChange={onDateChange}
+          name='month'
         >
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-          <option value="7">7</option>
-          <option value="8">8</option>
-          <option value="9">9</option>
-          <option value="10">10</option>
-          <option value="11">11</option>
-          <option value="12">12</option>
+          {months.map((month) => (
+            <option key={month} value={month}>
+              {month}
+            </option>
+          ))}
         </select>
         <select
           className={styles.year}
-          value={selectedYear}
-          onChange={handleYearChange}
+          value={selectedDate.year}
+          onChange={onDateChange}
+          name='year'
         >
           {years.map((year) => (
             <option key={year} value={year}>
