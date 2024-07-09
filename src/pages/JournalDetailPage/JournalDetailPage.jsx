@@ -6,6 +6,8 @@ import styles from './JournalDetailPage.module.css';
 import { IoReturnUpBack } from 'react-icons/io5';
 import { AiOutlineDelete } from 'react-icons/ai';
 import { FiEdit } from 'react-icons/fi';
+import Input from '../../components/Input/Input';
+import Textarea from '../../components/Textarea/Textarea';
 
 export default function JournalDetailPage() {
   const navigate = useNavigate();
@@ -56,7 +58,7 @@ export default function JournalDetailPage() {
           <IoReturnUpBack />
         </button>
         {isEditMode ? (
-          <input
+          <Input
             className={styles.dateForm}
             name='date'
             type='date'
@@ -70,7 +72,7 @@ export default function JournalDetailPage() {
       <div className={styles.container}>
         {isEditMode ? (
           <>
-            <input
+            <Input
               className={styles.titleForm}
               name='title'
               type='text'
@@ -78,10 +80,9 @@ export default function JournalDetailPage() {
               onChange={handleInputChange}
               maxLength='20'
             />
-            <textarea
+            <Textarea
               className={styles.contentForm}
               name='content'
-              type='text'
               value={journal.content}
               onChange={handleInputChange}
               maxLength='200'
