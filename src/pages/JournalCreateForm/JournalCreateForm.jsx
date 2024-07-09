@@ -49,7 +49,7 @@ export default function JournalCreatePage() {
           name='date'
           value={newJournal.date}
           onChange={handleInputChange}
-        ></input>
+        />
       </header>
       <section className={styles.container}>
         <label className={styles.label}>Title</label>
@@ -61,7 +61,7 @@ export default function JournalCreatePage() {
             value={newJournal.title}
             onChange={handleInputChange}
             maxLength='20'
-          ></input>
+          />
           <label className={styles.label}>Content</label>
           <textarea
             className={styles.contentForm}
@@ -70,7 +70,7 @@ export default function JournalCreatePage() {
             value={newJournal.content}
             onChange={handleInputChange}
             maxLength='200'
-          ></textarea>
+          />
         </form>
       </section>
       <section>
