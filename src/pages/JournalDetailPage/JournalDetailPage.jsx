@@ -12,27 +12,25 @@ export default function JournalDetailPage() {
 
   const { journals, handleEdit } = useJournals();
   const { journalId } = useParams();
-  const journal = journals.find((j) => j.id === journalId);
 
   const [isEditMode, setIsEditMode] = useState(false);
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
-  const [date, setDate] = useState('');
+  const [journal, setJournal] = useState({ title: '', content: '', date: '' });
 
   useEffect(() => {
-    if (journal) {
-      setTitle(journal.title);
-      setContent(journal.content);
-      setDate(journal.date);
+    const foundJournal = journals.find((j) => j.id === journalId);
+    if (foundJournal) {
+      setJournal(foundJournal);
     }
-  }, [journal]);
+  }, [journalId, journals]);
 
-  const handleTitleChange = (e) => setTitle(e.target.value);
-  const handleContentChange = (e) => setContent(e.target.value);
-  const handleDateChange = (e) => setDate(e.target.value);
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setJournal((prev) => ({ ...prev, [name]: value }));
+  };
 
   const handleSave = (e) => {
     e.preventDefault();
+    const { date, title, content } = journal;
 
     const isReadyToSubmit =
       date.trim().length !== 0 &&
@@ -41,7 +39,7 @@ export default function JournalDetailPage() {
 
     if (!isReadyToSubmit) return;
 
-    handleEdit({ id: journalId, date, title, content });
+    handleEdit({ id: journalId, ...journal });
     setIsEditMode(false);
   };
 
@@ -53,6 +51,7 @@ export default function JournalDetailPage() {
   if (!journal) {
     return <p>Journal not found!!!</p>;
   }
+
   return (
     <>
       <header className={styles.header}>
@@ -62,9 +61,10 @@ export default function JournalDetailPage() {
         {isEditMode ? (
           <input
             className={styles.dateForm}
+            name='date'
             type='date'
-            value={date}
-            onChange={handleDateChange}
+            value={journal.date}
+            onChange={handleInputChange}
           />
         ) : (
           <span className={styles.date}>{journal.date}</span>
@@ -75,22 +75,24 @@ export default function JournalDetailPage() {
           <>
             <input
               className={styles.titleForm}
+              name='title'
               type='text'
-              value={title}
-              onChange={handleTitleChange}
+              value={journal.title}
+              onChange={handleInputChange}
               maxLength='20'
             />
             <textarea
               className={styles.contentForm}
+              name='content'
               type='text'
-              value={content}
-              onChange={handleContentChange}
+              value={journal.content}
+              onChange={handleInputChange}
               maxLength='200'
             />
           </>
         ) : (
           <>
-            <heading className={styles.title}>{journal.title}</heading>
+            <h1 className={styles.title}>{journal.title}</h1>
             <p className={styles.content}>{journal.content}</p>
           </>
         )}
