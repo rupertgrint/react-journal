@@ -15,11 +15,15 @@ export default function JournalDetailPage() {
 
   const [isEditMode, setIsEditMode] = useState(false);
   const [journal, setJournal] = useState({ title: '', content: '', date: '' });
+  const [notFound, setNotFound] = useState(false);
 
   useEffect(() => {
     const foundJournal = journals.find((j) => j.id === journalId);
     if (foundJournal) {
       setJournal(foundJournal);
+      setNotFound(false);
+    } else {
+      setNotFound(true);
     }
   }, [journalId, journals]);
 
@@ -48,9 +52,7 @@ export default function JournalDetailPage() {
     navigate(`/delete/${journalId}`);
   };
 
-  if (!journal) {
-    return <p>Journal not found!!!</p>;
-  }
+  if (notFound) return <p>Journal Not Found! 🫥</p>;
 
   return (
     <>
