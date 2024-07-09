@@ -32,14 +32,11 @@ export default function JournalDetailPage() {
 
   const handleSave = (e) => {
     e.preventDefault();
-    const { date, title, content } = journal;
+    const isNotReadyToSubmit = Object.values(journal)
+      .map((val) => val.trim())
+      .includes('');
 
-    const isReadyToSubmit =
-      date.trim().length !== 0 &&
-      title.trim().length !== 0 &&
-      content.trim().length !== 0;
-
-    if (!isReadyToSubmit) return;
+    if (isNotReadyToSubmit) return;
 
     handleEdit({ id: journalId, ...journal });
     setIsEditMode(false);
