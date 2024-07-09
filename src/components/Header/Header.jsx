@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './Header.module.css';
 import { HiMoon, HiSun } from 'react-icons/hi';
 import { useDarkMode } from '../../context/DarkModeContext';
+import Select from '../Select/Select';
 
 const months = Array.from({ length: 12 }, (_, index) => index + 1);
 const MIN_YEAR = 1990;
@@ -21,30 +22,20 @@ export default function Header({ selectedDate, onDateChange }) {
   return (
     <header className={styles.header}>
       <div className={styles.date}>
-        <select
+        <Select
+          options={months}
           className={styles.month}
           value={selectedDate.month}
           onChange={onDateChange}
-          name="month"
-        >
-          {months.map((month) => (
-            <option key={month} value={month}>
-              {month}
-            </option>
-          ))}
-        </select>
-        <select
+          name='month'
+        />
+        <Select
+          options={years}
           className={styles.year}
           value={selectedDate.year}
           onChange={onDateChange}
-          name="year"
-        >
-          {years.map((year) => (
-            <option key={year} value={year}>
-              {year}
-            </option>
-          ))}
-        </select>
+          name='year'
+        />
       </div>
       <p className={styles.today}>{today}</p>
       <button className={styles.button} onClick={toggleDarkMode}>
