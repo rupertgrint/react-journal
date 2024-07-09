@@ -18,6 +18,7 @@
 }
 
 .dateForm {
+  color: var(--color-text);
   font-size: 0.9rem;
   margin: 0 auto;
   border: none;
@@ -34,11 +35,13 @@
 }
 
 .label {
+  color: var(--color-text);
   font-weight: bold;
   font-size: 1rem;
 }
 
 .titleForm {
+  color: var(--color-text);
   margin-top: 10px;
   margin-bottom: 15px;
   width: 100%;
@@ -47,6 +50,7 @@
 }
 
 .contentForm {
+  color: var(--color-text);
   margin-top: 10px;
   margin-bottom: 15px;
   width: 100%;
