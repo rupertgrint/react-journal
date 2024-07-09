@@ -7,6 +7,7 @@ import { IoReturnUpBack } from 'react-icons/io5';
 import { AiOutlineDelete } from 'react-icons/ai';
 import { FiEdit } from 'react-icons/fi';
 import Input from '../../components/Input/Input';
+import Textarea from '../../components/Textarea/Textarea';
 
 export default function JournalDetailPage() {
   const navigate = useNavigate();
@@ -79,10 +80,9 @@ export default function JournalDetailPage() {
               onChange={handleInputChange}
               maxLength='20'
             />
-            <Input
+            <Textarea
               className={styles.contentForm}
               name='content'
-              type='textarea'
               value={journal.content}
               onChange={handleInputChange}
               maxLength='200'

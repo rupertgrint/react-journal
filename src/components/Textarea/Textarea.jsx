@@ -1,7 +1,6 @@
 import React from 'react';
 
-export default function Input({
-  type = 'text',
+export default function Textarea({
   className,
   name,
   value,
@@ -9,9 +8,8 @@ export default function Input({
   ...props
 }) {
   return (
-    <input
+    <textarea
       className={className}
-      type={type}
       name={name}
       value={value}
       onChange={onChange}

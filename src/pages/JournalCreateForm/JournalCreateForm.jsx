@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { useJournals } from '../../context/JournalsContext';
 import { IoReturnUpBack } from 'react-icons/io5';
 import Input from '../../components/Input/Input';
+import Textarea from '../../components/Textarea/Textarea';
 
 const initialState = {
   title: '',
@@ -71,9 +72,8 @@ export default function JournalCreatePage() {
             maxLength='20'
           />
           <label className={styles.label}>Content</label>
-          <Input
+          <Textarea
             className={styles.contentForm}
-            type='textarea'
             name='content'
             value={newJournal.content}
             onChange={handleInputChange}
