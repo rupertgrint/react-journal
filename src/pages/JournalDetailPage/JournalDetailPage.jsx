@@ -67,7 +67,7 @@ export default function JournalDetailPage() {
             onChange={handleDateChange}
           />
         ) : (
-          <label className={styles.date}>{journal.date}</label>
+          <span className={styles.date}>{journal.date}</span>
         )}
       </header>
       <div className={styles.container}>
@@ -90,7 +90,7 @@ export default function JournalDetailPage() {
           </>
         ) : (
           <>
-            <label className={styles.title}>{journal.title}</label>
+            <heading className={styles.title}>{journal.title}</heading>
             <p className={styles.content}>{journal.content}</p>
           </>
         )}
