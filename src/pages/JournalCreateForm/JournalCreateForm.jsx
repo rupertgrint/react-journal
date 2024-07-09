@@ -5,6 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { useNavigate } from 'react-router-dom';
 import { useJournals } from '../../context/JournalsContext';
 import { IoReturnUpBack } from 'react-icons/io5';
+import Input from '../../components/Input/Input';
 
 const initialState = {
   title: '',
@@ -50,7 +51,7 @@ export default function JournalCreatePage() {
         <button onClick={() => navigate(-1)} className={styles.backBtn}>
           <IoReturnUpBack />
         </button>
-        <input
+        <Input
           className={styles.dateForm}
           type='date'
           name='date'
@@ -61,7 +62,7 @@ export default function JournalCreatePage() {
       <section className={styles.container}>
         <label className={styles.label}>Title</label>
         <form onSubmit={handleSubmit}>
-          <input
+          <Input
             className={styles.titleForm}
             type='text'
             name='title'
@@ -70,9 +71,9 @@ export default function JournalCreatePage() {
             maxLength='20'
           />
           <label className={styles.label}>Content</label>
-          <textarea
+          <Input
             className={styles.contentForm}
-            type='text'
+            type='textarea'
             name='content'
             value={newJournal.content}
             onChange={handleInputChange}
