@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useJournals } from '../../context/JournalsContext';
 import styles from './JournalDetailPage.module.css';
@@ -9,42 +10,108 @@ import { FiEdit } from 'react-icons/fi';
 export default function JournalDetailPage() {
   const navigate = useNavigate();
 
-  const { journals } = useJournals();
+  const { journals, handleEdit } = useJournals();
   const { journalId } = useParams();
 
-  const journal = journals.find((j) => j.id === journalId);
+  const [isEditMode, setIsEditMode] = useState(false);
+  const [journal, setJournal] = useState({ title: '', content: '', date: '' });
+
+  useEffect(() => {
+    const foundJournal = journals.find((j) => j.id === journalId);
+    if (foundJournal) {
+      setJournal(foundJournal);
+    } else {
+      setJournal(null);
+    }
+  }, [journalId, journals]);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setJournal((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSave = (e) => {
+    e.preventDefault();
+    const isNotReadyToSubmit = Object.values(journal)
+      .map((val) => val.trim())
+      .includes('');
+
+    if (isNotReadyToSubmit) return;
+
+    handleEdit({ id: journalId, ...journal });
+    setIsEditMode(false);
+  };
 
   const handleDelete = (e) => {
     e.preventDefault();
     navigate(`/delete/${journalId}`);
   };
-  const handleEdit = (e) => {
-    e.preventDefault();
-    navigate(`/edit/${journalId}`);
-  };
 
-  if (!journal) {
-    return <p>Journal not found!!!</p>;
-  }
+  if (!journal) return <p>Journal Not Found! 🫥</p>;
+
   return (
     <>
       <header className={styles.header}>
         <button className={styles.backBtn} onClick={() => navigate(-1)}>
           <IoReturnUpBack />
         </button>
-        <label className={styles.date}>{journal.date}</label>
+        {isEditMode ? (
+          <input
+            className={styles.dateForm}
+            name='date'
+            type='date'
+            value={journal.date}
+            onChange={handleInputChange}
+          />
+        ) : (
+          <span className={styles.date}>{journal.date}</span>
+        )}
       </header>
-      <section className={styles.container}>
-        <label className={styles.title}>{journal.title}</label>
-        <p className={styles.content}>{journal.content}</p>
-      </section>
+      <div className={styles.container}>
+        {isEditMode ? (
+          <>
+            <input
+              className={styles.titleForm}
+              name='title'
+              type='text'
+              value={journal.title}
+              onChange={handleInputChange}
+              maxLength='20'
+            />
+            <textarea
+              className={styles.contentForm}
+              name='content'
+              type='text'
+              value={journal.content}
+              onChange={handleInputChange}
+              maxLength='200'
+            />
+          </>
+        ) : (
+          <>
+            <h1 className={styles.title}>{journal.title}</h1>
+            <p className={styles.content}>{journal.content}</p>
+          </>
+        )}
+      </div>
       <section className={styles.footer}>
-        <button className={styles.editBtn} onClick={handleEdit}>
-          <FiEdit />
-        </button>
-        <button className={styles.delBtn} onClick={handleDelete}>
-          <AiOutlineDelete />
-        </button>
+        {isEditMode ? (
+          <button className={styles.saveBtn} type='submit' onClick={handleSave}>
+            save
+          </button>
+        ) : (
+          <>
+            <button
+              className={styles.editBtn}
+              onClick={() => setIsEditMode(true)}
+            >
+              <FiEdit />
+            </button>
+            <button className={styles.delBtn} onClick={handleDelete}>
+              <AiOutlineDelete />
+            </button>
+          </>
+        )}
       </section>
     </>
   );

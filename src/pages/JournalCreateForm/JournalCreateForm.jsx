@@ -1,21 +1,29 @@
 import React from 'react';
 import styles from './JournalCreateForm.module.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { useNavigate } from 'react-router-dom';
 import { useJournals } from '../../context/JournalsContext';
-import { useDarkMode } from '../../context/DarkModeContext';
 import { IoReturnUpBack } from 'react-icons/io5';
 
-const initialState = { title: '', content: '', date: '' };
+const initialState = {
+  title: '',
+  content: '',
+  date: '',
+};
 
 export default function JournalCreatePage() {
-  const { darkMode } = useDarkMode();
-
   const { handleAdd } = useJournals();
   const navigate = useNavigate();
 
   const [newJournal, setNewJournal] = useState(initialState);
+
+  useEffect(() => {
+    setNewJournal((prev) => ({
+      ...prev,
+      date: new Date().toISOString().substring(0, 10),
+    }));
+  }, []);
 
   const handleInputChange = (e) => {
     setNewJournal((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -25,9 +33,9 @@ export default function JournalCreatePage() {
     e.preventDefault();
 
     const isReadyToSubmit =
-      newJournal.date.trim().length === 0 &&
-      newJournal.title.trim().length === 0 &&
-      newJournal.content.trim().length === 0;
+      newJournal.date.trim().length !== 0 &&
+      newJournal.title.trim().length !== 0 &&
+      newJournal.content.trim().length !== 0;
 
     if (!isReadyToSubmit) return;
 
@@ -42,27 +50,25 @@ export default function JournalCreatePage() {
         <button onClick={() => navigate(-1)} className={styles.backBtn}>
           <IoReturnUpBack />
         </button>
-        <form>
-          <input
-            className={styles.dateForm}
-            type='date'
-            name='date'
-            value={newJournal.date}
-            onChange={handleInputChange}
-          ></input>
-        </form>
+        <input
+          className={styles.dateForm}
+          type='date'
+          name='date'
+          value={newJournal.date}
+          onChange={handleInputChange}
+        />
       </header>
       <section className={styles.container}>
         <label className={styles.label}>Title</label>
         <form onSubmit={handleSubmit}>
-          <textarea
+          <input
             className={styles.titleForm}
             type='text'
             name='title'
             value={newJournal.title}
             onChange={handleInputChange}
-            maxlength='20'
-          ></textarea>
+            maxLength='20'
+          />
           <label className={styles.label}>Content</label>
           <textarea
             className={styles.contentForm}
@@ -70,8 +76,8 @@ export default function JournalCreatePage() {
             name='content'
             value={newJournal.content}
             onChange={handleInputChange}
-            maxlength='100'
-          ></textarea>
+            maxLength='200'
+          />
         </form>
       </section>
       <section>

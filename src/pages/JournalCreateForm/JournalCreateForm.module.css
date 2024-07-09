@@ -6,15 +6,19 @@
   padding-top: 55px;
   padding-bottom: 30px;
   padding-left: 40px;
-  margin-right: 140px;
+  margin-right: 80px;
 }
 
 .backBtn {
+  color: var(--color-text);
+  background-color: transparent;
+  border: none;
   font-size: 1rem;
   margin-right: auto;
 }
 
 .dateForm {
+  color: var(--color-text);
   font-size: 0.9rem;
   margin: 0 auto;
   border: none;
@@ -31,11 +35,13 @@
 }
 
 .label {
+  color: var(--color-text);
   font-weight: bold;
   font-size: 1rem;
 }
 
 .titleForm {
+  color: var(--color-text);
   margin-top: 10px;
   margin-bottom: 15px;
   width: 100%;
@@ -44,6 +50,7 @@
 }
 
 .contentForm {
+  color: var(--color-text);
   margin-top: 10px;
   margin-bottom: 15px;
   width: 100%;
@@ -73,7 +80,7 @@
   margin-left: 72%;
 }
 
-.saveBtn:hover {
+button:hover {
   cursor: pointer;
   transition: all 150ms ease-in;
   transform: scale(1.1);

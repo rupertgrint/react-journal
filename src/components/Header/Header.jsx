@@ -2,7 +2,6 @@ import React from 'react';
 import styles from './Header.module.css';
 import { HiMoon, HiSun } from 'react-icons/hi';
 import { useDarkMode } from '../../context/DarkModeContext';
-import { useMemo } from 'react';
 
 const months = Array.from({ length: 12 }, (_, index) => index + 1);
 const MIN_YEAR = 1990;
@@ -26,7 +25,7 @@ export default function Header({ selectedDate, onDateChange }) {
           className={styles.month}
           value={selectedDate.month}
           onChange={onDateChange}
-          name='month'
+          name="month"
         >
           {months.map((month) => (
             <option key={month} value={month}>
@@ -38,7 +37,7 @@ export default function Header({ selectedDate, onDateChange }) {
           className={styles.year}
           value={selectedDate.year}
           onChange={onDateChange}
-          name='year'
+          name="year"
         >
           {years.map((year) => (
             <option key={year} value={year}>

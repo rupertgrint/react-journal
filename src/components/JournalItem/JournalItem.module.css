@@ -1,8 +1,13 @@
 .journal {
-  margin-top: 20px;
-  padding-bottom: 20px;
+  padding-top: 15px;
+  padding-bottom: 10px;
   padding-left: 10px;
   padding-right: 10px;
+}
+
+.journal:hover {
+  cursor: pointer;
+  box-shadow: 0 0 4px var(--color-grey);
 }
 
 .date,

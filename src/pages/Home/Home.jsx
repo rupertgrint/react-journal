@@ -11,7 +11,7 @@ export default function Home() {
 
   const updateSelectedDate = (e) => {
     const { name, value } = e.target;
-    setSelectedDate((prev) => ({ ...prev, [name]: value }));
+    setSelectedDate((prev) => ({ ...prev, [name]: Number(value) }));
   };
 
   return (
