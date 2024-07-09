@@ -1,22 +1,29 @@
 import React from 'react';
 import styles from './JournalCreateForm.module.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { useNavigate } from 'react-router-dom';
 import { useJournals } from '../../context/JournalsContext';
 import { IoReturnUpBack } from 'react-icons/io5';
 
+const initialState = {
+  title: '',
+  content: '',
+  date: '',
+};
+
 export default function JournalCreatePage() {
   const { handleAdd } = useJournals();
   const navigate = useNavigate();
 
-  const initialState = {
-    title: '',
-    content: '',
-    date: new Date().toISOString().substring(0, 10),
-  };
-
   const [newJournal, setNewJournal] = useState(initialState);
+
+  useEffect(() => {
+    setNewJournal((prev) => ({
+      ...prev,
+      date: new Date().toISOString().substring(0, 10),
+    }));
+  }, []);
 
   const handleInputChange = (e) => {
     setNewJournal((prev) => ({ ...prev, [e.target.name]: e.target.value }));
