@@ -20,7 +20,7 @@ A simple journal application built with React that allows users to create, filte
 To run this project locally:
 ### 1. Clone the respository:
 ```bash
-git clone [https://github.com/rupertgrint/react-journal.git](https://github.com/rupertgrint/react-journal.git)
+git clone https://github.com/rupertgrint/react-journal.git
 cd react-journal
 ```
 ### 2. Install dependencies:
