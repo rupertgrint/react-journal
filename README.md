@@ -1,70 +1,64 @@
-# Getting Started with Create React App
+# Journal App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A simple journal application built with React that allows users to create, filter, and manage daily journal entries. This app offers a dark/light mode switch and stores entries using localStorage for persistent data.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- **Write and Save Journals:** Write journal entries with a title and content, saved automatically to localStorage.
+- **Edit and Delete Journals:** Modify or remove any existing entry with ease.
+- **Filter by Date:** Filter entries by month and year for easy navigation.
+- **Dark/Light Mode:** Toggle between dark and light themes, with settings managed through React context.
 
-### `yarn start`
+## Tech Stack
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Frontend:** React, JavaScript, HTML, CSS
+- **Styling:** CSS Modules for scoped and maintainable styles
+- **Storage:** localStorage for persistent data saving
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Getting Started
 
-### `yarn test`
+To run this project locally:
+### 1. Clone the respository:
+```bash
+git clone [https://github.com/rupertgrint/react-journal.git](https://github.com/rupertgrint/react-journal.git)
+cd react-journal
+```
+### 2. Install dependencies:
+```bash
+yarn install
+```
+### 3. Start the application:
+```bash
+yarn start
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Project Structure
+```bash
+src/
+│
+├── components/       # Reusable components (e.g., JournalItem, JournalList, Header etc.)
+├── context/          # Theme context for dark/light mode toggle and journal data
+├── pages/            # Main pages (e.g., Home, JournalDetail, JournalCreate, and Delete page)
+└── App.js            # Main app entry point
+```
 
-### `yarn build`
+## Screenshots
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 1. Home Page (Light Mode)
+![Screen Shot 2024-10-26 at 8 26 16 pm](https://github.com/user-attachments/assets/619fb1a8-e221-4c96-8767-1c28b2c7b808)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 2. Home Page (Dark Mode)
+![Screen Shot 2024-10-26 at 8 26 33 pm](https://github.com/user-attachments/assets/69c0df63-67ea-49cf-b8aa-dc7b74495243)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 3. Journal Entry Creation
+![Screen Shot 2024-10-26 at 8 24 07 pm](https://github.com/user-attachments/assets/982bc2d8-67f9-4594-80eb-ee2275c8ba4f)
 
-### `yarn eject`
+### 4. Detailed Journal View
+![Screen Shot 2024-10-26 at 8 26 59 pm](https://github.com/user-attachments/assets/b851fbff-07bb-4ceb-b19a-116e37b2e393)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### 5. Journal Delete
+![Screen Shot 2024-10-26 at 8 27 23 pm](https://github.com/user-attachments/assets/785e8450-ed14-4cb4-8b1e-6cf5d8f35b39)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
